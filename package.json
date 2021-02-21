@@ -1,5 +1,5 @@
 {
-  "name": "page_preloader",
+  "name": "@schnecke/page_preloader",
   "version": "1.0.0",
   "description": "loading screen for GA class",
   "author": "guru-schnecke",

@@ -15,15 +15,52 @@ npm install --save page_preloader
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'page_preloader'
+import {PreloaderOne, CircularLoader} from 'page_preloader'
 import 'page_preloader/dist/index.css'
 
 class Example extends Component {
+  state = {
+    statusState: false,
+    lists : []
+  }
+
+  componentDidMount() {
+    fetch(`URL GOES HERE`)
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ statusState : true, lists: result})
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   render() {
-    return <MyComponent />
+    return (
+      <>
+    <PreloaderOne color={"red"} />
+        <CircularLoader status={statusState}>
+          <div>
+            {lists.map(item => {
+              <li key={item.id}>{item.name}</li>
+            })}
+          </div>
+        </CircularLoader>
+    </>
+    )
   }
 }
 ```
+### Preloader
+| Props| description| example|
+|----| ----| ----|
+|color| Set color of slider loader|  ```<PreloaderOne color={"red"} /> <PreloaderOne color={"#000000"} />```|
+
+### Circular Preloader
+| Props| description| example|
+|----| ----| ----|
+|color| Set color of slider loader|  ```<PreloaderOne color={"red"} /> <PreloaderOne color={"#000000"} />```|
+
 
 ## License
 
